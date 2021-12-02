@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"github.com/luisfmelo/go-advent-of-code-2021/pkg"
+	"log"
 	"os"
 )
 
@@ -20,6 +21,7 @@ func CountMeasurementIncreases(measurements []int) int {
 			count++
 		}
 	}
+
 	return count
 }
 
@@ -30,10 +32,18 @@ func Count3MeasurementWindowIncreases(measurements []int) int {
 			count++
 		}
 	}
+
 	return count
 }
 
 func main() {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Printf("Error occurred: %v", err)
+		}
+	}()
+
 	file, err := os.Open(inputPath)
 	if err != nil {
 		panic(err)
