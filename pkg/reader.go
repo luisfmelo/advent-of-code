@@ -3,8 +3,10 @@ package pkg
 import (
 	"bufio"
 	"bytes"
+	"github.com/luisfmelo/go-advent-of-code-2021/pkg/types"
 	"io"
 	"strconv"
+	"strings"
 )
 
 // ReadInts reads whitespace-separated ints from r. If there's an error, it
@@ -33,6 +35,34 @@ func ReadLines(r io.Reader) ([]string, error) {
 		result = append(result, scanner.Text())
 	}
 	return result, scanner.Err()
+}
+
+// ReadLine reads 1 line until the first \n, it returns the line read as well as the error value
+func ReadLine(scanner *bufio.Scanner) (string, error) {
+	scanner.Scan()
+	return scanner.Text(), scanner.Err()
+}
+
+// ReadIntegersInLine reads 1 line until the first \n, it returns the list of integers on that line
+// as well as the error value
+func ReadIntegersInLine(scanner *bufio.Scanner, sep string) ([]int, error) {
+	scanner.Scan()
+
+	line := scanner.Text()
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+
+	var integerArr []int
+	for _, n := range strings.Split(line, sep) {
+		integer, err := strconv.Atoi(n)
+		if err != nil {
+			return nil, err
+		}
+		integerArr = append(integerArr, integer)
+	}
+
+	return integerArr, nil
 }
 
 // ReadLines reads \n separated strings from r. If there's an error, it
@@ -97,4 +127,51 @@ func ReadMatrix(r io.Reader) ([][]rune, error) {
 		result = append(result, row)
 	}
 	return result, scanner.Err()
+}
+
+// ReadIntMatrix reads \n separated strings from r. And then each character.
+// If there's an error, it returns the lines successfully read so far as well as the error value.
+func ReadIntMatrix(scanner *bufio.Scanner) (types.Matrix, error) {
+	var matrix types.Matrix
+	rowIndex := 0
+	for scanner.Scan() {
+		if scanner.Text() == "" {
+			break
+		}
+
+		matrix = append(matrix, []int{})
+		for columnIndex, v := range strings.Fields(scanner.Text()) {
+			matrix[rowIndex] = append(matrix[rowIndex], 0)
+			n, err := strconv.Atoi(v)
+			if err != nil {
+				return nil, err
+			}
+			matrix[rowIndex][columnIndex] = n
+		}
+		rowIndex++
+	}
+	if len(matrix) == 0 {
+		return nil, io.EOF
+	}
+
+	return matrix, scanner.Err()
+}
+
+// ReadMultipleIntMatrix reads \n separated int matrixes from r.
+// If there's an error, it returns the lines successfully read so far as well as the error value.
+func ReadMultipleIntMatrix(scanner *bufio.Scanner) ([]types.Matrix, error) {
+	var err error
+	var matrixes []types.Matrix
+	for {
+		m, err := ReadIntMatrix(scanner)
+		if err != nil {
+			break
+		}
+		matrixes = append(matrixes, m)
+	}
+	if err != nil && err != io.EOF {
+		return nil, err
+	}
+
+	return matrixes, nil
 }

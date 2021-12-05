@@ -5,16 +5,20 @@ import (
 	"time"
 )
 
-func RunWithTime(part1, part2 func() string) {
-	start := time.Now()
-	log.Printf("1st part result: %v\n", part1())
-	log.Printf("1st part took: %s", time.Since(start))
+type adventDayFunc func() string
 
-	if part2 == nil {
-		log.Printf("2nd part is not implemented yet")
-		return
+func RunWithTime(part1, part2 adventDayFunc) {
+	run := func(partNumber int, f adventDayFunc) {
+		if f == nil {
+			log.Printf("Part #%d is not implemented yet", partNumber)
+			return
+		}
+
+		start := time.Now()
+		log.Printf("Part #%d result: %v\n", partNumber, f())
+		log.Printf("1st part took: %s", time.Since(start))
 	}
-	start = time.Now()
-	log.Printf("2nd part result: %v\n", part2())
-	log.Printf("2nd part took: %s", time.Since(start))
+
+	run(1, part1)
+	run(2, part2)
 }
