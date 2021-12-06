@@ -60,7 +60,11 @@ func main() {
 		panic(err)
 	}
 
-	input, err := pkg.ReadLines(bufio.NewReader(file))
+	r := bufio.NewReader(file)
+	scanner := bufio.NewScanner(r)
+	scanner.Split(bufio.ScanLines)
+
+	input, err := pkg.ReadLines(scanner)
 	if err != nil {
 		panic(err)
 	}

@@ -129,7 +129,11 @@ func main() {
 		panic(err)
 	}
 
-	diagnosticReport, err := pkg.ReadLines(bufio.NewReader(file))
+	r := bufio.NewReader(file)
+	scanner := bufio.NewScanner(r)
+	scanner.Split(bufio.ScanLines)
+
+	diagnosticReport, err := pkg.ReadLines(scanner)
 	if err != nil {
 		panic(err)
 	}

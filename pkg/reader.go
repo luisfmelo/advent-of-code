@@ -27,9 +27,7 @@ func ReadInts(r io.Reader) ([]int, error) {
 
 // ReadLines reads \n separated strings from r. If there's an error, it
 // returns the lines successfully read so far as well as the error value.
-func ReadLines(r io.Reader) ([]string, error) {
-	scanner := bufio.NewScanner(r)
-	scanner.Split(bufio.ScanLines)
+func ReadLines(scanner *bufio.Scanner) ([]string, error) {
 	var result []string
 	for scanner.Scan() {
 		result = append(result, scanner.Text())
