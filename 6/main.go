@@ -10,9 +10,8 @@ import (
 
 const inputPath = "6/input.txt"
 
-
 func CalculateNumberOfLanternFishesAfterNDays(lanternFishes []int, days int) int {
-	mapLanternFishes := map[int]int{0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
+	mapLanternFishes := map[int]int{0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
 	for _, fish := range lanternFishes {
 		mapLanternFishes[fish]++
 	}

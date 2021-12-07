@@ -63,18 +63,6 @@ func ReadIntegersInLine(scanner *bufio.Scanner, sep string) ([]int, error) {
 	return integerArr, nil
 }
 
-// ReadLines reads \n separated strings from r. If there's an error, it
-// returns the lines successfully read so far as well as the error value.
-func ReadByDelimiter(r io.Reader, delimiter string) ([]string, error) {
-	scanner := bufio.NewScanner(r)
-	scanner.Split(SplitAt(delimiter))
-	var result []string
-	for scanner.Scan() {
-		result = append(result, scanner.Text())
-	}
-	return result, scanner.Err()
-}
-
 func ReadIntsByDelimiter(r io.Reader, delimiter string) ([]int, error) {
 	scanner := bufio.NewScanner(r)
 	scanner.Split(SplitAt(delimiter))
