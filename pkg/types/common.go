@@ -8,6 +8,14 @@ import (
 
 type Matrix [][]int
 
+type MatrixElement struct {
+	LineIndex, ColumnIndex int
+}
+
+func (m MatrixElement) ToString() string {
+	return fmt.Sprintf("(%v,%v)", m.LineIndex, m.ColumnIndex)
+}
+
 type Point struct {
 	X, Y int
 }

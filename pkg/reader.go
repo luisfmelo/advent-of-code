@@ -101,9 +101,7 @@ func SplitAt(substring string) func(data []byte, atEOF bool) (advance int, token
 
 // ReadMatrix reads \n separated strings from r. And then each character.
 // If there's an error, it returns the lines successfully read so far as well as the error value.
-func ReadMatrix(r io.Reader) ([][]rune, error) {
-	scanner := bufio.NewScanner(r)
-	scanner.Split(bufio.ScanLines)
+func ReadMatrix(scanner *bufio.Scanner) ([][]rune, error) {
 	var result [][]rune
 	for scanner.Scan() {
 		var row []rune
@@ -112,6 +110,7 @@ func ReadMatrix(r io.Reader) ([][]rune, error) {
 		}
 		result = append(result, row)
 	}
+
 	return result, scanner.Err()
 }
 
@@ -133,6 +132,36 @@ func ReadIntMatrix(scanner *bufio.Scanner) (types.Matrix, error) {
 				return nil, err
 			}
 			matrix[rowIndex][columnIndex] = n
+		}
+		rowIndex++
+	}
+	if len(matrix) == 0 {
+		return nil, io.EOF
+	}
+
+	return matrix, scanner.Err()
+}
+
+// ReadDigitMatrixWithoutSeparator reads \n separated strings from r.
+// It will identify each digit (0 to 9) and output a matrix of ints.
+func ReadDigitMatrixWithoutSeparator(scanner *bufio.Scanner) (types.Matrix, error) {
+	var matrix types.Matrix
+	rowIndex := 0
+	for scanner.Scan() {
+		if scanner.Text() == "" {
+			break
+		}
+
+		matrix = append(matrix, []int{})
+		for _, v := range strings.Fields(scanner.Text()) {
+			for columnIndex, r := range v {
+				matrix[rowIndex] = append(matrix[rowIndex], 0)
+				n, err := strconv.Atoi(string(r))
+				if err != nil {
+					return nil, err
+				}
+				matrix[rowIndex][columnIndex] = n
+			}
 		}
 		rowIndex++
 	}

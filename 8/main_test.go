@@ -80,12 +80,12 @@ func TestSumOutputValues(t *testing.T) {
 		input          []input
 		expectedOutput int
 	}{
-		//{
-		//	input: []input{
-		//		{signals: []string{"acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"}, output: []string{"cdfeb", "fcadb", "cdfeb", "cdbaf"}},
-		//	},
-		//	expectedOutput: 5353,
-		//},
+		{
+			input: []input{
+				{signals: []string{"acedgfb", "cdfbe", "gcdfa", "fbcad", "dab", "cefabd", "cdfgeb", "eafb", "cagedb", "ab"}, output: []string{"cdfeb", "fcadb", "cdfeb", "cdbaf"}},
+			},
+			expectedOutput: 5353,
+		},
 		{
 			input: []input{
 				{signals: []string{"bdfegc", "cbegaf", "gecbf", "dfcage", "bdacg", "ed", "bedf", "ced", "adcbefg", "gebcd"}, output: []string{"ed", "bcgafe", "cdgba", "cbgef"}},
@@ -98,21 +98,21 @@ func TestSumOutputValues(t *testing.T) {
 			},
 			expectedOutput: 4315,
 		},
-		//{
-		//	input: []input{
-		//		{signals: []string{"be", "cfbegad", "cbdgef", "fgaecd", "cgeb", "fdcge", "agebfd", "fecdb", "fabcd", "edb"}, output: []string{"fdgacbe", "cefdb", "cefbgd", "gcbe"}},
-		//		{signals: []string{"edbfga", "begcd", "cbg", "gc", "gcadebf", "fbgde", "acbgfd", "abcde", "gfcbed", "gfec"}, output: []string{"fcgedb", "cgb", "dgebacf", "gc"}},
-		//		{signals: []string{"fgaebd", "cg", "bdaec", "gdafb", "agbcfd", "gdcbef", "bgcad", "gfac", "gcb", "cdgabef"}, output: []string{"cg", "cg", "fdcagb", "cbg"}},
-		//		{signals: []string{"fbegcd", "cbd", "adcefb", "dageb", "afcb", "bc", "aefdc", "ecdab", "fgdeca", "fcdbega"}, output: []string{"efabcd", "cedba", "gadfec", "cb"}},
-		//		{signals: []string{"aecbfdg", "fbg", "gf", "bafeg", "dbefa", "fcge", "gcbea", "fcaegb", "dgceab", "fcbdga"}, output: []string{"gecf", "egdcabf", "bgf", "bfgea"}},
-		//		{signals: []string{"fgeab", "ca", "afcebg", "bdacfeg", "cfaedg", "gcfdb", "baec", "bfadeg", "bafgc", "acf"}, output: []string{"gebdcfa", "ecba", "ca", "fadegcb"}},
-		//		{signals: []string{"dbcfg", "fgd", "bdegcaf", "fgec", "aegbdf", "ecdfab", "fbedc", "dacgb", "gdcebf", "gf"}, output: []string{"cefg", "dcbef", "fcge", "gbcadfe"}},
-		//		{signals: []string{"bdfegc", "cbegaf", "gecbf", "dfcage", "bdacg", "ed", "bedf", "ced", "adcbefg", "gebcd"}, output: []string{"ed", "bcgafe", "cdgba", "cbgef"}},
-		//		{signals: []string{"egadfb", "cdbfeg", "cegd", "fecab", "cgb", "gbdefca", "cg", "fgcdab", "egfdb", "bfceg"}, output: []string{"gbdfcae", "bgc", "cg", "cgb"}},
-		//		{signals: []string{"gcafb", "gcf", "dcaebfg", "ecagb", "gf", "abcdeg", "gaef", "cafbge", "fdbac", "fegbdc"}, output: []string{"fgae", "cfgab", "fg", "bagce"}},
-		//	},
-		//	expectedOutput: 61229,
-		//},
+		{
+			input: []input{
+				{signals: []string{"be", "cfbegad", "cbdgef", "fgaecd", "cgeb", "fdcge", "agebfd", "fecdb", "fabcd", "edb"}, output: []string{"fdgacbe", "cefdb", "cefbgd", "gcbe"}},
+				{signals: []string{"edbfga", "begcd", "cbg", "gc", "gcadebf", "fbgde", "acbgfd", "abcde", "gfcbed", "gfec"}, output: []string{"fcgedb", "cgb", "dgebacf", "gc"}},
+				{signals: []string{"fgaebd", "cg", "bdaec", "gdafb", "agbcfd", "gdcbef", "bgcad", "gfac", "gcb", "cdgabef"}, output: []string{"cg", "cg", "fdcagb", "cbg"}},
+				{signals: []string{"fbegcd", "cbd", "adcefb", "dageb", "afcb", "bc", "aefdc", "ecdab", "fgdeca", "fcdbega"}, output: []string{"efabcd", "cedba", "gadfec", "cb"}},
+				{signals: []string{"aecbfdg", "fbg", "gf", "bafeg", "dbefa", "fcge", "gcbea", "fcaegb", "dgceab", "fcbdga"}, output: []string{"gecf", "egdcabf", "bgf", "bfgea"}},
+				{signals: []string{"fgeab", "ca", "afcebg", "bdacfeg", "cfaedg", "gcfdb", "baec", "bfadeg", "bafgc", "acf"}, output: []string{"gebdcfa", "ecba", "ca", "fadegcb"}},
+				{signals: []string{"dbcfg", "fgd", "bdegcaf", "fgec", "aegbdf", "ecdfab", "fbedc", "dacgb", "gdcebf", "gf"}, output: []string{"cefg", "dcbef", "fcge", "gbcadfe"}},
+				{signals: []string{"bdfegc", "cbegaf", "gecbf", "dfcage", "bdacg", "ed", "bedf", "ced", "adcbefg", "gebcd"}, output: []string{"ed", "bcgafe", "cdgba", "cbgef"}},
+				{signals: []string{"egadfb", "cdbfeg", "cegd", "fecab", "cgb", "gbdefca", "cg", "fgcdab", "egfdb", "bfceg"}, output: []string{"gbdfcae", "bgc", "cg", "cgb"}},
+				{signals: []string{"gcafb", "gcf", "dcaebfg", "ecagb", "gf", "abcdeg", "gaef", "cafbge", "fdbac", "fegbdc"}, output: []string{"fgae", "cfgab", "fg", "bagce"}},
+			},
+			expectedOutput: 61229,
+		},
 	}
 
 	for id, tc := range testCases {
