@@ -73,7 +73,9 @@ func getLavaTunnelLowLevels(lavaTunnelHeights types.Matrix) []types.MatrixElemen
 }
 
 func GetBasinSize(lavaTunnelHeights types.Matrix, c types.MatrixElement) int {
-	queue := types.NewMatrixElementQueue([]types.MatrixElement{c})
+	queue := types.NewMatrixElementQueue()
+	queue.Push(c)
+
 	var basinSize int
 	for queue.Size() > 0 {
 		c = queue.Pop()

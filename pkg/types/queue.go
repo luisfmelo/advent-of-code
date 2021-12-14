@@ -4,8 +4,14 @@ type MatrixElementQueue struct {
 	elements []MatrixElement
 }
 
-func NewMatrixElementQueue(elements []MatrixElement) *MatrixElementQueue {
-	return &MatrixElementQueue{elements: elements}
+func NewMatrixElementQueue() *MatrixElementQueue {
+	return &MatrixElementQueue{}
+}
+
+func (q *MatrixElementQueue) PushMultiple(elements []MatrixElement) {
+	for _, e := range elements {
+		q.Push(e)
+	}
 }
 
 func (q *MatrixElementQueue) Push(e MatrixElement) {
