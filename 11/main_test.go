@@ -12,17 +12,17 @@ func TestCountNumberOfFlashes(t *testing.T) {
 		steps          int
 		expectedOutput int
 	}{
-		//{
-		//	matrix: types.Matrix{
-		//		{1, 1, 1, 1, 1},
-		//		{1, 9, 9, 9, 1},
-		//		{1, 9, 1, 9, 1},
-		//		{1, 9, 9, 9, 1},
-		//		{1, 1, 1, 1, 1},
-		//	},
-		//	steps:          1,
-		//	expectedOutput: 9,
-		//},
+		{
+			matrix: types.Matrix{
+				{1, 1, 1, 1, 1},
+				{1, 9, 9, 9, 1},
+				{1, 9, 1, 9, 1},
+				{1, 9, 9, 9, 1},
+				{1, 1, 1, 1, 1},
+			},
+			steps:          1,
+			expectedOutput: 9,
+		},
 		{
 			matrix: types.Matrix{
 				{1, 1, 1, 1, 1},
