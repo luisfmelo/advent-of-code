@@ -8,6 +8,40 @@ import (
 
 type Matrix [][]int
 
+func NewMatrix(nLines, nColumns int) Matrix {
+	m := Matrix{}
+	for i := 0; i < nLines; i++ {
+		m = append(m, make([]int, nColumns))
+	}
+
+	return m
+}
+
+func (m Matrix) NumberOfRows() int {
+	return len(m)
+}
+
+func (m Matrix) NumberOfColumns() int {
+	if m.NumberOfRows() == 0 {
+		return 0
+	}
+
+	return len(m[0])
+}
+
+func (m Matrix) PrintWithMapping(mapping map[int]rune) {
+	for i := range m {
+		for j := range m[i] {
+			r, exists := mapping[m[i][j]]
+			if !exists {
+				r = '?'
+			}
+			fmt.Printf("%s", string(r))
+		}
+		fmt.Println("")
+	}
+}
+
 // GetAdjacentOfElement will return all elements adjacent to the center element.
 // It will include diagonal elements
 func (m Matrix) GetAdjacentOfElement(c MatrixElement) []MatrixElement {

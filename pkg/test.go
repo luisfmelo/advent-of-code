@@ -12,6 +12,7 @@ func IntArrIsEqual(arr1, arr2 []int) bool {
 			return false
 		}
 	}
+
 	return true
 }
 
@@ -25,5 +26,6 @@ func MatrixElementArrIsEqual(arr1, arr2 []types.MatrixElement) bool {
 			return false
 		}
 	}
+
 	return true
 }

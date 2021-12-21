@@ -143,7 +143,7 @@ func ReadIntMatrix(scanner *bufio.Scanner) (types.Matrix, error) {
 }
 
 // ReadDigitMatrixWithoutSeparator reads \n separated strings from r.
-// It will identify each digit (0 to 9) and output a matrix of ints.
+// It will identify each digit (0 to 9) and output a matrix.go of ints.
 func ReadDigitMatrixWithoutSeparator(scanner *bufio.Scanner) (types.Matrix, error) {
 	var matrix types.Matrix
 	rowIndex := 0
