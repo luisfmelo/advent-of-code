@@ -3,11 +3,12 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/luisfmelo/go-advent-of-code-2021/pkg"
 	"log"
 	"math"
 	"os"
 	"strings"
+
+	"github.com/luisfmelo/go-advent-of-code-2021/pkg"
 )
 
 const inputPath = "14/input.txt"
