@@ -190,3 +190,29 @@ func ReadMultipleIntMatrix(scanner *bufio.Scanner) ([]types.Matrix, error) {
 
 	return matrixes, nil
 }
+
+// ReadMultipleIntSeparatedByBlankLine reads multiple \n separated ints from r.
+// It will group them based on empty lines.
+func ReadMultipleIntSeparatedByBlankLine(r io.Reader) (types.Matrix, error) {
+	scanner := bufio.NewScanner(r)
+
+	var i int
+	var result = types.Matrix{[]int{}}
+	for scanner.Scan() {
+		t := scanner.Text()
+		if t == "" {
+			i++
+			result = append(result, []int{})
+			continue
+		}
+
+		numberRead, err := strconv.Atoi(t)
+		if err != nil {
+			return nil, err
+		}
+
+		result[i] = append(result[i], numberRead)
+	}
+
+	return result, nil
+}
